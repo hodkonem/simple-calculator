@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Main {
 
+    private static final String OPERAND_ERROR_MESSAGE = "Операнды должны быть целыми числами от 1 до 10";
+
     public static String calc(String input) throws IllegalArgumentException {
         String[] parts = input.split("\\s+");
         if (parts.length != 3) {
@@ -21,10 +23,10 @@ public class Main {
             num1 = Integer.parseInt(parts[0]);
             num2 = Integer.parseInt(parts[2]);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Операнды должны быть целыми числами от 1 до 10");
+            throw new IllegalArgumentException(OPERAND_ERROR_MESSAGE);
         }
         if (num1 < 1 || num1 > 10 || num2 < 1 || num2 > 10) {
-            throw new IllegalArgumentException("Операнды должны быть целыми числами от 1 до 10");
+            throw new IllegalArgumentException(OPERAND_ERROR_MESSAGE);
         }
 
         int result;
