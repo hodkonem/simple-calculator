@@ -4,12 +4,14 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static final String OPERAND_ERROR_MESSAGE = "Операнды должны быть целыми числами от 1 до 10";
+    private static final String OPERAND_ERROR_MESSAGE = "throws Exception";
 
     public static String calc(String input) throws IllegalArgumentException {
         String[] parts = input.split("\\s+");
-        if (parts.length != 3) {
-            throw new IllegalArgumentException("Некорректный ввод: должно быть два операнда и один оператор");
+        if (parts.length < 2) {
+            throw new IllegalArgumentException("throws Exception //т.к. строка не является математической операцией");
+        } else if (parts.length > 3) {
+            throw new IllegalArgumentException("throws Exception //т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
         }
 
         int num1, num2;
@@ -52,14 +54,13 @@ public class Main {
         return Integer.toString(result);
     }
 
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите арифметическое выражение (например, 2 + 1)");
         try {
             String input = scanner.nextLine();
             String result = calc(input);
-            System.out.println("Результат: " + result);
+            System.out.println(result);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             System.exit(1);
