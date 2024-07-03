@@ -56,14 +56,21 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите арифметическое выражение (например, 2 + 1)");
-        try {
+        boolean running = true;
+        while (running) {
+            System.out.println("Введите арифметическое выражение (например, 2 + 1) или 'exit' для выхода");
             String input = scanner.nextLine();
-            String result = calc(input);
-            System.out.println(result);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            System.exit(1);
+            if (input.equalsIgnoreCase("exit")) {
+                running = false;
+            } else {
+                try {
+                    String result = calc(input);
+                    System.out.println(result);
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                    System.exit(1);
+                }
+            }
         }
     }
 }
